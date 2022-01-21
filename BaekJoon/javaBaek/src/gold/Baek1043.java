@@ -1,8 +1,9 @@
+package gold;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+public class Baek1043 {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
 
@@ -56,10 +57,10 @@ public class Main {
             result += addPoint;
         }
 
-//        for(int person : knownRealPeople) {
-//            System.out.println(person);
-//        }
-//        System.out.println();
+        for(int person : knownRealPeople) {
+            System.out.println(person);
+        }
+        System.out.println();
         System.out.println(result);
 
 
