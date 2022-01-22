@@ -31,6 +31,8 @@ public class Baek1043 {
             }
             peopleInParty.get(i).remove(0);
         }
+
+        // 광기의 knownRealPeople... 찾기
         for(int j = 0; j<numberOfParty; j++) {
             for (int i = 0; i < numberOfParty; i++) {
                 for (int person : knownRealPeople) {
@@ -57,10 +59,10 @@ public class Baek1043 {
             result += addPoint;
         }
 
-        for(int person : knownRealPeople) {
-            System.out.println(person);
-        }
-        System.out.println();
+//        for(int person : knownRealPeople) {
+//            System.out.println(person);
+//        }
+//        System.out.println();
         System.out.println(result);
 
 

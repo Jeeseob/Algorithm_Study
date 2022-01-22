@@ -56,24 +56,7 @@ public class Main {
             result += addPoint;
         }
 
-//        for(int person : knownRealPeople) {
-//            System.out.println(person);
-//        }
-//        System.out.println();
         System.out.println(result);
-
-
-
-
-        // 1 진실을 아는 사람이 오면 더하지 않는다.
-        // 2 진실을 아는 사람과 함께 온 사람이 있으면 더하지 않는다.
-
-        // 3 순서대로하는 것이 아니라 한번에 처리해야 한다.
-
-        // 4 일단 진실을 아는 사람과 같이온 사람부터 처리한 후, 그 사람과 같이 온 사람을 진실을 아는 사람에 넣는다.
-
-
-
 
     }
 }
