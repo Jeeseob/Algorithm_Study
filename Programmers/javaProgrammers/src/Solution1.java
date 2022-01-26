@@ -1,6 +1,8 @@
-import java.util.Arrays;
-
 public class Solution1 {
+
+    // 프로그래머스 기지국 문제 2021.01.26
+    // https://programmers.co.kr/learn/courses/10302/lessons/62946
+
     public int solution(int n, int[] stations, int w) {
         int answer = 0;
         int count = 0; // 빈칸을 세기위한 변수
