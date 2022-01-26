@@ -3,7 +3,8 @@ public class Solution1 {
     // 프로그래머스 기지국 문제 2021.01.26
     // https://programmers.co.kr/learn/courses/10302/lessons/62946
 
-    public int solution(int n, int[] stations, int w) {
+    // 내가 푼 풀이 방법
+    public int solution1(int n, int[] stations, int w) {
         int answer = 0;
         int count = 0; // 빈칸을 세기위한 변수
         int[] gateway = new int[n]; // 기지국 값을 나타내는 배열
@@ -49,6 +50,29 @@ public class Solution1 {
             answer += count/(2*w+1);
             if(count%(2*w+1) > 0) {
                 answer +=1;
+            }
+        }
+        return answer;
+    }
+
+    // 간단하고 효율적인 풀이방법
+    public int solution2(int n, int[] stations, int w) {
+        int answer = 0;
+        int gatewayPosition= 1; // 현재 위치
+        int stationIndex = 0; // stations의 index
+
+        // 아파트 동을 이동하면서, 기지국을 파악한다
+        while(gatewayPosition <= n){
+            // 이미 기지국의 영향력이 존재하는 영역에 도달한 경우
+            if(stationIndex < stations.length && stations[stationIndex] - w <= gatewayPosition) {
+                // 기지국의 영향력이 존재하지 않는 영역으로 gatewayPosition을 이동
+                gatewayPosition = stations[stationIndex] + w + 1;
+                // 다음 기지국을 가리키도록 인덱스 +1
+                stationIndex++;
+
+            } else {
+                answer += 1; // 기지국이 하나 추가된다. (이때, 현재 위치가 아니라 현재 위치 + w에 추가된다고 생각)
+                gatewayPosition += 2 * w + 1; // 기지국 하나의 도달거리만큼 이동
             }
         }
         return answer;
