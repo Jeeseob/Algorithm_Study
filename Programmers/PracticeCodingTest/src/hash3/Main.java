@@ -1,11 +1,11 @@
-package hash2;
+package hash3;
 
-import hash2.Solution;
+import hash3.Solution;
 
 public class Main {
 
     public static void main(String[] args) {
 	    Solution solution = new Solution();
-        System.out.println(solution.solution(new String[]{"119", "97674223", "1195524421"}));
+        System.out.println(solution.solution(new String[][]{{"yellowhat", "headgear"}, {"bluesunglasses", "eyewear"}, {"green_turban", "headgear"}}));
     }
 }
