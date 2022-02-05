@@ -36,7 +36,6 @@ class Solution {
     }
 
     public int[] solution2(int[] progresses, int[] speeds) {
-
         Queue<Integer> answerQueue = new LinkedList<>();
         ArrayList<Integer> answerArrayList = new ArrayList<>();
         int answerCount = 1;
