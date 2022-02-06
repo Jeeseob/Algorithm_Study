@@ -1,6 +1,4 @@
-package hash3;
-
-import hash3.Solution;
+package Hash.hash3;
 
 public class Main {
 

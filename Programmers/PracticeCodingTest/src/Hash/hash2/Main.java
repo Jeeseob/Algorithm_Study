@@ -1,6 +1,4 @@
-package hash2;
-
-import hash2.Solution;
+package Hash.hash2;
 
 public class Main {
 

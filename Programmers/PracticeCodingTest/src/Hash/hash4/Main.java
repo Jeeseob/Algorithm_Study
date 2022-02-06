@@ -1,6 +1,4 @@
-package hash4;
-
-import hash4.Solution;
+package Hash.hash4;
 
 public class Main {
 

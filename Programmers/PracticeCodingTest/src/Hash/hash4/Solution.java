@@ -1,4 +1,4 @@
-package hash4;
+package Hash.hash4;
 
 import java.util.*;
 

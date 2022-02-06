@@ -1,4 +1,4 @@
-package hash1;
+package Hash.hash1;
 
 public class Main {
 
