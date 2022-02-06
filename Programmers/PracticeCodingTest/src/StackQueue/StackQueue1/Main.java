@@ -1,4 +1,4 @@
-package StackQueue1;
+package StackQueue.StackQueue1;
 
 public class Main {
 
