@@ -1,8 +1,8 @@
-package Heap.heap2;
+package Heap.heap3;
 
 public class Main {
     public static void main(String[] args) {
 	    Solution solution = new Solution();
-        System.out.println(solution.solution( new int[][]{{0, 3}, {1, 9}, {2, 6}}));
+        System.out.println(solution.solution( new String[]{"I 16","D 1"}));
     }
 }
