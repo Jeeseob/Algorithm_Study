@@ -1,10 +1,9 @@
 package Sort.Sort1;
 
 // https://programmers.co.kr/learn/courses/30/lessons/42626
-// Heap 문제 : 더 맵게
+// Sort 문제 : 더 맵게
 
 import java.util.Arrays;
-import java.util.Collections;
 
 class Solution {
     public int[] solution(int[] array, int[][] commands) {
