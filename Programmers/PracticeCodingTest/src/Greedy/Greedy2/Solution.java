@@ -1,7 +1,7 @@
 package Greedy.Greedy1;
 
 // https://programmers.co.kr/learn/courses/30/lessons/42840
-// Greedy 문제 : 모의고사
+// Sort 문제 : 모의고사
 
 import java.util.*;
 
