@@ -1,47 +1,51 @@
-package Greedy.Greedy1;
+package Greedy.Greedy2;
 
-// https://programmers.co.kr/learn/courses/30/lessons/42840
-// Sort 문제 : 모의고사
+// https://programmers.co.kr/learn/courses/30/lessons/42839
+// Greedy 문제 : 소수찾기
 
-import java.util.*;
+import java.util.HashSet;
 
 class Solution {
-    public int[] solution(int[] answers) {
+    // 중복된 숫자가 있는경우, 값이 중복될 수 있어 Hash Set 사용
+    private static HashSet<Integer> numberHashSet = new HashSet<>();
 
-        // 학생 답안(찍는 순서)
-        int[][] studentAnswers = new int[][]{{1,2,3,4,5},{2,1,2,3,2,4,2,5},{3, 3, 1, 1, 2, 2, 4, 4, 5, 5}};
-        // {학생이 받은 점수, 학생 index}
-        int[][] totalPoint = new int[studentAnswers.length][2];
-
-        // 각 학생별 totalPoint 계산 및 입력
-        for(int i = 0; i < answers.length; i++) {
-            for (int j = 0; j < totalPoint.length; j++) {
-                if (answers[i] == studentAnswers[j][i % studentAnswers[j].length]) {
-                    totalPoint[j][0] += 1;
+    // 소수의 개수를 반환해주는 함수
+    public int countPrimeNumber(HashSet<Integer> numberHashSet) {
+        int count = 0;
+        Boolean check = true;
+        for (int number : numberHashSet) {
+            // 에라토스테네스의 체에 따라서, 제곱근의 올림까의 배수인지만 확인해도 소수여부를 판단할 수 있다.(연산량 감소)
+            int sqrt = (int)Math.sqrt(number);
+            for (int i = 2; i <= sqrt; i++) {
+                if (number % i == 0) {
+                    check = false;
+                    break;
                 }
-                totalPoint[j][1] = j;
+                check = true;
+            }
+            if(check) {
+                count++;
+                check = false;
             }
         }
-        // 점수를 기반으로 내림차순 정렬
-        Arrays.sort(totalPoint, (o1,o2) -> o2[0] - o1[0]);
+        return count;
+    }
 
-        int count = totalPoint.length;
-        int maxPoint = totalPoint[0][0]; // 내림차순의 가장 첫번째 값이 최대값
-
-        // 최댓값이 몇개인지 count, break 없이 빠져나온다면, count = totalPoint.legth 그대로
-        for (int i = 1; i < totalPoint.length; i++) {
-            if(totalPoint[i][0] != maxPoint) {
-                count = i;
-                break;
-            }
+    // DFS를 사용하여 전체 경우의 수 파악
+    public void makeNumber(String tempNumber, String numbers) {
+        if(!tempNumber.equals("")) {
+            numberHashSet.add(Integer.parseInt(tempNumber));
         }
-        int[] answer = new int[count];
-        // 정답 갯수만큼 반복하여, index를 정답에 넣는다.
-        for (int i = 0; i < answer.length; i++) {
-            answer[i] = totalPoint[i][1]+1;
+        for(int i = 0; i < numbers.length(); i++){
+            makeNumber(tempNumber + numbers.charAt(i), numbers.substring(0,i) + numbers.substring(i+1));
         }
+    }
 
-        Arrays.sort(answer);
-        return answer;
+    public int solution(String numbers) {
+
+        makeNumber("",numbers);
+        countPrimeNumber(numberHashSet);
+
+        return countPrimeNumber(numberHashSet);
     }
 }
