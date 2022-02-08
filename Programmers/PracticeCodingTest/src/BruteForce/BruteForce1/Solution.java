@@ -1,7 +1,7 @@
-package Greedy.Greedy1;
+package BruteForce.BruteForce1;
 
 // https://programmers.co.kr/learn/courses/30/lessons/42840
-// Greedy 문제 : 모의고사
+// BruteForce 문제 : 모의고사
 
 import java.util.*;
 

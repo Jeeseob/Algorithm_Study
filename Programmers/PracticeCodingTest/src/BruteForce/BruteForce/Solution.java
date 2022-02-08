@@ -1,7 +1,7 @@
-package Greedy.Greedy2;
+package BruteForce.BruteForce;
 
 // https://programmers.co.kr/learn/courses/30/lessons/42839
-// Greedy 문제 : 소수찾기
+// BruteForce 문제 : 소수찾기
 
 import java.util.HashSet;
 

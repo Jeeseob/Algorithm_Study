@@ -1,4 +1,4 @@
-package Greedy.Greedy2;
+package BruteForce.BruteForce;
 
 public class Main {
 
