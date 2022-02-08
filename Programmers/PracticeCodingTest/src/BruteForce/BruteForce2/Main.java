@@ -1,4 +1,4 @@
-package BruteForce.BruteForce;
+package BruteForce.BruteForce2;
 
 public class Main {
 

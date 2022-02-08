@@ -1,4 +1,4 @@
-package BruteForce.BruteForce;
+package BruteForce.BruteForce2;
 
 // https://programmers.co.kr/learn/courses/30/lessons/42839
 // BruteForce 문제 : 소수찾기
@@ -14,7 +14,7 @@ class Solution {
         int count = 0;
         Boolean check = true;
         for (int number : numberHashSet) {
-            // 에라토스테네스의 체에 따라서, 제곱근의 올림까의 배수인지만 확인해도 소수여부를 판단할 수 있다.(연산량 감소)
+            // 에라토스테네스의 체에 따라서, 제곱근까지의 자연수의 배수인지만 확인해도 소수여부를 판단할 수 있다.(연산량 감소)
             int sqrt = (int)Math.sqrt(number);
             for (int i = 2; i <= sqrt; i++) {
                 if (number % i == 0) {
