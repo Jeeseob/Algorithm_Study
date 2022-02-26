@@ -3,6 +3,7 @@ package week1.problem2;
 
 import java.util.*;
 import java.lang.*;
+import java.util.stream.IntStream;
 
 // 가장 큰 수
 class Solution {
@@ -29,6 +30,16 @@ class Solution {
         for(String number : numbersToString) {
             answer += number;
         }
+        return answer;
+    }
+
+    // 이분탐색을 활용한 풀이방법
+    public int solutionInVideo(int[] numbers)  {
+        int answer = 0;
+        int min = 0;
+        //  numbers에서
+        int max = IntStream.of(numbers).max().orElse(0);
+
         return answer;
     }
 }
