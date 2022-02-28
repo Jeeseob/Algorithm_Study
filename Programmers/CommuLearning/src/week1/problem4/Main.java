@@ -4,8 +4,27 @@ import java.util.Arrays;
 import java.util.Collections;
 
 // 숫자 게임
+// 오름차순 정렬을 위해, Integer 배열로 변경하는 방법을 사용했지만, 그냥 정렬하고 뒤에서 부터 for문을 돌려도 된다.
+// 효율성 테스트를 통과했지만, 다소 비효율적인 코드이다. 효율적인 코드를 고려해보자
 
 class Solution {
+
+    public int solutionInVideo(int[] A, int[] B) {
+        int answer = 0;
+        int index = B.length - 1;
+
+        Arrays.sort(A);
+        Arrays.sort(B);
+
+        for(int i = A.length - 1; i >= 0; i--) {
+            if(B[index] > A[i]) {
+                answer++;
+                index--;
+            }
+        }
+        return answer;
+    }
+
     public int solution(int[] A, int[] B) {
         int answer = 0;
         Integer[] integersA = Arrays.stream(A).boxed().toArray(Integer[]::new);
