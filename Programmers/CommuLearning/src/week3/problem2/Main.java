@@ -2,8 +2,85 @@ package week3.problem2;
 
 // 위장 문제
 
-// 효율성에서 탈락( DFS는 중복이 많다)
+import java.util.LinkedList;
+import java.util.Queue;
+
 class Solution {
+    private Queue<Position> positionQueue = new LinkedList<>();
+
+    public int solution(int[][] maps) {
+        // 목적지 좌표
+        int xMax = maps[0].length - 1;
+        int yMax = maps.length - 1 ;
+
+        Position position = new Position(0, 0);
+        positionQueue.add(position);
+
+        // BFS
+        while(!positionQueue.isEmpty()) {
+
+            Position tempPosition = positionQueue.poll();
+
+            int xPos = tempPosition.getxPos();
+            int yPos = tempPosition.getyPos();
+
+            // 4가지 방향에서 이동 가능한 좌표가 있는지 확인
+            if(xPos > 0 && maps[yPos][xPos-1] != 0) {
+                updatePostionData(xPos,yPos,xPos-1,yPos,maps);
+            }
+            if(xPos < xMax && maps[yPos][xPos+1] != 0) {
+                updatePostionData(xPos,yPos,xPos+1,yPos,maps);
+            }
+            if(yPos > 0 && maps[yPos-1][xPos] != 0) {
+                updatePostionData(xPos,yPos,xPos,yPos-1,maps);
+            }
+            if(yPos < yMax && maps[yPos+1][xPos] != 0) {
+                updatePostionData(xPos,yPos,xPos,yPos+1,maps);
+            }
+
+        }
+
+        // 목적지에 도달한 적이 없는 경우
+        if(maps[yMax][xMax] <= 1) {
+            return -1;
+        }
+        return maps[yMax][xMax]+1;
+    }
+
+    // next Postion의 값을 수정
+    private void updatePostionData (int tempXPos, int tempYPos, int nextXPos, int nextYPos, int[][] maps ) {
+        // 처음방문 하는 경우, queue에 해당 좌표를 넣어 해당 좌표로 이동할 수 있게 한다.
+        if(maps[nextYPos][nextXPos] == 1) {
+            positionQueue.add(new Position(nextXPos, nextYPos));
+            maps[nextYPos][nextXPos] = maps[tempYPos][tempXPos] + 1;
+        }
+        // 이미 다른 방법으로 접근한 적이 있는 경우
+        else if (maps[nextYPos][nextXPos] > maps[tempYPos][tempXPos]){
+            maps[nextYPos][nextXPos] = maps[tempYPos][tempXPos] + 1;
+        }
+    }
+}
+
+class Position {
+    private int xPos;
+    private int yPos;
+
+    public Position(int xPos, int yPos) {
+        this.xPos = xPos;
+        this.yPos = yPos;
+    }
+
+    public int getxPos() {
+        return xPos;
+    }
+
+    public int getyPos() {
+        return yPos;
+    }
+}
+
+// 효율성에서 탈락( DFS는 중복이 많다)
+class SolutionDFS {
     private static int xMax;
     private static int yMax;
 
