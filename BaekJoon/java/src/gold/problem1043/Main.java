@@ -1,9 +1,9 @@
-package gold;
+package gold.problem1043;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Baek1043 {
+public class Main {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
 

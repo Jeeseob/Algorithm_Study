@@ -1,9 +1,9 @@
-package sliver;
+package sliver.problem1149;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Baek1149 {
+public class Main {
 
     static class House {
         int red;
