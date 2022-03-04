@@ -6,7 +6,6 @@ package Graph.Graph2;
 // 부모노드의 수 + 자식노드의 수 = n-1 이면, 순위를 알 수 있다.
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 class Solution {
     ArrayList<ArrayList<Integer>> nodeGraph = new ArrayList<>();
