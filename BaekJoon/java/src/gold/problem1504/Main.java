@@ -95,6 +95,7 @@ public class Main {
                 }
             }
         }
+        answers[startNode-1] = 0;
         return answers;
     }
 }
