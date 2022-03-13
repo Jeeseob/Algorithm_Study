@@ -21,8 +21,6 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
-        int answer = 0;
-
         // 노드 갯수, 간선 갯수
         numberOfNode = Integer.parseInt(st.nextToken());
         numberOfEdge = Integer.parseInt(st.nextToken());
@@ -51,28 +49,27 @@ public class Main {
         // 다익스트라 알고리즘을 활용하여, 2개의 필수노드까지의 최단 거리를 구한다.
         int[] tempAsnwers = searchNode(1);
 
-        int secondNecessaryNode;
-
-        // 둘 중 작은 값을 첫번째 노드로 하고, 첫번째 노드를 기준으로 두번째 노드까지의 거리를 구한다.
-        if(tempAsnwers[necessaryNode[0]-1] > tempAsnwers[necessaryNode[1]-1]) {
-            answer += tempAsnwers[necessaryNode[1] - 1];
-            tempAsnwers = searchNode(necessaryNode[1]);
-            secondNecessaryNode = necessaryNode[0];
-        }
-        else {
-            answer += tempAsnwers[necessaryNode[0] - 1];
-            tempAsnwers = searchNode(necessaryNode[0]);
-            secondNecessaryNode = necessaryNode[1];
+        // 그래프가 끊겨있는 경우, -1 출력
+        if(tempAsnwers[necessaryNode[0]-1] == Integer.MAX_VALUE || tempAsnwers[necessaryNode[1]-1] == Integer.MAX_VALUE || tempAsnwers[numberOfNode-1] == Integer.MAX_VALUE) {
+            System.out.println(-1);
+            return;
         }
 
-        answer += tempAsnwers[secondNecessaryNode - 1];
+        // 두가지 경우의 수를 기반으로 정답을 찾아낸다.
+        int firstAnswer = findAnswer(necessaryNode[0], necessaryNode[1], tempAsnwers[necessaryNode[0]-1]);
+        int secondAnswer = findAnswer(necessaryNode[1], necessaryNode[0], tempAsnwers[necessaryNode[1]-1]);
+
         // 두번째 노드를 기준으로 목표노드까지의 거리를 구한다.
-        tempAsnwers = searchNode(secondNecessaryNode);
+        System.out.println(Math.min(firstAnswer, secondAnswer));
+    }
 
-        answer += tempAsnwers[numberOfNode - 1];
+    private static int findAnswer(int firstNode, int secondNode, int answer) {
+        int[] tempAsnwers;
+        tempAsnwers = searchNode(firstNode);
+        answer += tempAsnwers[secondNode-1];
+        tempAsnwers = searchNode(secondNode);
 
-
-        System.out.println(answer);
+        return answer + tempAsnwers[numberOfNode - 1];
     }
 
     private static int[] searchNode(int startNode) {
