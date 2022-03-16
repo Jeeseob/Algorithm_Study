@@ -1,22 +1,18 @@
 package gold.problem2448;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.Scanner;
 
 public class Main {
 
     private static Boolean[][] tree;
     private static int height;
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine(), "");
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        height = scanner.nextInt();
 
-        // 입력
-        height = Integer.parseInt(st.nextToken());
+        StringBuilder stringBuilder = new StringBuilder();
 
         // 초기화
         tree = new Boolean[height][height * 2 - 1];
@@ -31,28 +27,29 @@ public class Main {
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < height*2 -1; j++) {
                 if(tree[i][j]) {
-                    System.out.print("*");
+                    stringBuilder.append("*");
                     continue;
                 }
-                System.out.print(" ");
+                stringBuilder.append(" ");
             }
-            System.out.println();
+            stringBuilder.append("\n");
         }
+
+        System.out.println(stringBuilder.toString());
 
     }
 
     private static void drawTree(int row, int start,int tempHeight) {
-        if(row+2 >= height) {
-            return;
-        }
-        if(tempHeight == 3) {
+        if(tempHeight < 3) return;
 
+        if(tempHeight == 3) {
             tree[row][start] = true;
             tree[row + 1][start - 1] = true;
             tree[row + 1][start + 1] = true;
             for (int i = start - 2; i <= start + 2; i++) {
                 tree[row + 2][i] = true;
             }
+            return;
         }
         else {
             int nextHeight = tempHeight/2;
