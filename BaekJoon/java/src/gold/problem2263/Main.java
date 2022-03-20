@@ -1,8 +1,6 @@
 package gold.problem2263;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -27,40 +25,29 @@ public class Main {
         // 포스트 오더 기준 마지막 -> root
         // 인오더는 root를 기준으로 먼저 나오면, 왼쪽, 나중에 나오면 오른쪽.
 
-        //System.out.print(nodes[1][numberOfNode-1] +" "); // root
+        searchNode(0,numberOfNode - 1, 0, numberOfNode - 1);
 
-        searchNode(0,numberOfNode, 0, numberOfNode);
-        // 프리 오더는 처음에 root
     }
 
     // 현재 노드를 출력하고, 왼쪽먼저 쭉쭉 재귀로 가면 됨.
-    private static void searchNode(int preStart, int preEnd, int inStart, int inEnd){
+    private static void searchNode(int inStart, int inEnd, int postStart, int postEnd){
+
+        if(inStart > inEnd || postStart > postEnd) return;
 
         // 자기자신 출력 (preorder)
-        int tempRoot = nodes[1][inEnd-1];
+        int tempRoot = nodes[1][postEnd];
         System.out.print(tempRoot + " ");
 
-        int left = 0;
-        // 오른쪽 왼쪽 node의 갯수 파악.
-        for(int i = preStart; i < preEnd; i++) {
+        int left = inStart;
+        // root보다 왼쪽에 있는 node의 최대 index
+        for(int i = inStart; i <= inEnd; i++) {
             if(nodes[0][i] == tempRoot) {
+                left = i;
                 break;
             }
-            left++;  // left는 왼쪽 node의 갯수
         }
-        // right는 오른쪽 node의 갯수
-
-        // left
-        if(left != 0) {
-            System.out.println("left = " + left);
-            searchNode(preStart, preStart + left, inStart, inEnd - (preEnd - left));
-        }
-
-        // right
-        if(left != preEnd - preStart - 1) {
-            System.out.println("right = " + (preEnd - preStart - left));
-            searchNode(preStart + left, preEnd, preStart + left,inEnd-1);
-        }
+        searchNode(inStart, left - 1, postStart,  postStart + left - inStart - 1);
+        searchNode(left + 1, inEnd, postStart + left - inStart,postEnd - 1);
     }
 }
 //10
