@@ -9,31 +9,23 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
-
-    private static char[][][] mapCahr;
-    private static int[][] map;
-    private static int column;
-    private static int row;
     private static int[] addColumn = new int[]{0, 0, 1, -1};
     private static int[] addRow = new int[]{1, -1, 0, 0};
-
-    private static Queue<int[]> pointQueue;
-    private static Boolean[][][] visited;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
-        column = Integer.parseInt(st.nextToken());
-        row = Integer.parseInt(st.nextToken());
+        int column = Integer.parseInt(st.nextToken());
+        int row = Integer.parseInt(st.nextToken());
 
-        if (column - 1 == 0 && row - 1 == 0) {
-            System.out.print(1);
+        if (column == 1 && row == 1) {
+            System.out.println(1);
             return;
         }
 
-        mapCahr = new char[2][column][row];
-        visited = new Boolean[2][column][row];
+        char[][][] mapChar = new char[2][column][row];
+        Boolean[][][] visited = new Boolean[2][column][row];
 
         for (int i = 0; i < 2; i++) {
             for (Boolean[] check : visited[i]) {
@@ -41,59 +33,58 @@ public class Main {
             }
         }
 
-        for(int i = 0; i < column; i++) {
+        for (int i = 0; i < column; i++) {
             st = new StringTokenizer(br.readLine());
             String tempToken = st.nextToken();
-            for(int j = 0; j < row; j++) {
-                mapCahr[0][i][j] = mapCahr[1][i][j] = tempToken.charAt(j);
+            for (int j = 0; j < row; j++) {
+                mapChar[0][i][j] = mapChar[1][i][j] = tempToken.charAt(j);
             }
         }
 
-        map = new int[column][row];
+        br.close();
+
+        int[][] map = new int[column][row];
 
         map[0][0] = 1;
         visited[0][0][0] = true;
-        pointQueue = new LinkedList<>();
 
-        pointQueue.add(new int[]{0,0,0});
+        Queue<int[]> pointQueue = new LinkedList<>();
+        pointQueue.add(new int[]{0, 0, 0});
 
-        searchMap();
-
-
-        if(map[column-1][row-1] == 0) {
-            System.out.println(-1);
-            return;
-        }
-        System.out.println(map[column-1][row-1]);
-        return;
-    }
-
-    private static void searchMap() {
         int tempColumn;
         int tempRow;
         int tempWall;
-        while(!pointQueue.isEmpty()) {
+        int nextColumn;
+        int nextRow;
+
+        while (!pointQueue.isEmpty()) {
             int[] tempPoint = pointQueue.poll();
-            tempColumn = tempPoint[0];
-            tempRow = tempPoint[1];
-            tempWall = tempPoint[2];
+
+            tempWall = tempPoint[0];
+            tempColumn = tempPoint[1];
+            tempRow = tempPoint[2];
+
+            if (tempColumn == column - 1 && tempRow == row - 1) {
+                System.out.println(map[column - 1][row - 1]);
+                return;
+            }
 
             // 4가지 방향중, 불가능한 방향, 이전 방향,
             for (int i = 0; i < 4; i++) {
                 // 이전 방향으로 돌아가지 않는다.
-
-                int nextColumn = tempColumn + addColumn[i];
-                int nextRow = tempRow + addRow[i];
+                nextColumn = tempColumn + addColumn[i];
+                nextRow = tempRow + addRow[i];
 
                 if (0 <= nextColumn && nextColumn < column && 0 <= nextRow && nextRow < row) {
-                    char nextData = mapCahr[tempWall][nextColumn][nextRow];
+                    char nextData = mapChar[tempWall][nextColumn][nextRow];
+
                     // 벽이 있는 경우
                     if (nextData == '1') {
-                        // 벽이 있는데, 벽을 깬적이 없는 경우 벽을 깬다.
+                        // 벽을 깬적이 없는 경우 벽을 깬다.
                         if (tempWall == 0 && !visited[1][nextColumn][nextRow]) {
                             map[nextColumn][nextRow] = map[tempColumn][tempRow] + 1;
-                            visited[tempWall][nextColumn][nextRow] = true;
-                            pointQueue.add(new int[]{nextColumn, nextRow, 1});
+                            visited[1][nextColumn][nextRow] = true;
+                            pointQueue.add(new int[]{1, nextColumn, nextRow});
                         }
                     }
 
@@ -102,18 +93,13 @@ public class Main {
                         if (!visited[tempWall][nextColumn][nextRow]) {
                             map[nextColumn][nextRow] = map[tempColumn][tempRow] + 1;
                             visited[tempWall][nextColumn][nextRow] = true;
-                            pointQueue.add(new int[]{nextColumn, nextRow, tempWall});
+                            pointQueue.add(new int[]{tempWall, nextColumn, nextRow});
                         }
                     }
                 }
             }
         }
+        System.out.println(-1);
+        return;
     }
 }
-//6 4
-//0100
-//1110
-//1000
-//0000
-//0101
-//0000
