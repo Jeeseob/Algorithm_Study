@@ -48,6 +48,9 @@ public class Main {
     // 실제 계산(DP사용)
     private static int findMaxSticker(int[][] stickerArray) {
         int maxRow = stickerArray[0].length;
+        if(maxRow == 1) {
+            return Math.max(stickerArray[0][0], stickerArray[1][0]);
+        }
         stickerArray[0][1] += stickerArray[1][0];
         stickerArray[1][1] += stickerArray[0][0];
         for (int row = 2; row < maxRow; row++) {
