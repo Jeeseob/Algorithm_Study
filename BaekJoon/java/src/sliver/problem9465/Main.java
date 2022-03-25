@@ -48,6 +48,7 @@ public class Main {
     // 실제 계산(DP사용)
     private static int findMaxSticker(int[][] stickerArray) {
         int maxRow = stickerArray[0].length;
+        // maxRow가 1이면, DP가 불필요
         if(maxRow == 1) {
             return Math.max(stickerArray[0][0], stickerArray[1][0]);
         }
