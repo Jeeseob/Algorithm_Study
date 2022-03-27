@@ -10,9 +10,8 @@ public class Main {
     // 의도
     public static void main(String[] args) throws IOException {
         int[] numbers = readConsoleData();
-        int[] answers = findLIS(numbers);
+        int answer = findLIS(numbers);
 
-        int answer = Arrays.stream(answers).max().orElse(-1);
         System.out.println(answer);
     }
 
@@ -40,7 +39,7 @@ public class Main {
      * @param numbers
      * @return
      */
-    private static int[] findLIS(int[] numbers) {
+    private static int findLIS(int[] numbers) {
         int[] dynamicArray = new int[numbers.length];
         Arrays.fill(dynamicArray, 1);
 
@@ -51,6 +50,7 @@ public class Main {
                 }
             }
         }
-        return dynamicArray;
+
+        return Arrays.stream(dynamicArray).max().orElse(-1);
     }
 }
