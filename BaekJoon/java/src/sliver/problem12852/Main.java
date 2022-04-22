@@ -35,7 +35,6 @@ public class Main {
         System.out.println(stringBuilder);
     }
 
-
     private static Stack<Integer> checkAnswer() {
         Stack<Integer> answerStack = new Stack<>();
         int temp = 1;
