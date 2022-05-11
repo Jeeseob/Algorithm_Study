@@ -1,4 +1,4 @@
-package sliver.problem;
+package sliver.problem1931;
 
 import java.io.BufferedReader;
 import java.io.IOException;
