@@ -1,3 +1,5 @@
+package gold.problem9252;
+
 import java.io.*;
 import java.util.StringTokenizer;
 
