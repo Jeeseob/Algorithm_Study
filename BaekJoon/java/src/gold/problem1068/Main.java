@@ -26,7 +26,7 @@ public class Main {
         // delete 노드의 하위 노드에 leaf를 추가하여 leaf count에서 제거
         calcTree(delete);
 
-        int answer = getAnswer(N);햐
+        int answer = getAnswer(N);
 
         bw.write(answer + "\n");
         bw.flush();
