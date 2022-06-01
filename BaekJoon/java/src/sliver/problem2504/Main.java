@@ -1,47 +1,60 @@
 package sliver.problem2504;
 
 import java.io.*;
+import java.util.Queue;
 import java.util.Stack;
 import java.util.StringTokenizer;
+
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        String in = br.readLine();
 
-        String data = br.readLine();
-
-        Stack<Character> stack = new Stack<>();
-        stack.push(data.charAt(0));
-        int tempAnswer = 0;
+        int temp = 1;
         int answer = 0;
-        for (int i = 1; i < data.length(); i++) {
-            char temp = data.charAt(i);
-            if (!stack.isEmpty()) {
-                char now = stack.peek();
-                if (temp == '(' && now == ')') {
-                    stack.pop();
-                    tempAnswer *= 2;
-                }
-                else if(temp == '[' && now == ']') {
-                    stack.pop();
-                    tempAnswer *= 3;
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < in.length(); i++) {
+            if (in.charAt(i) == '(') {
+                stack.push('(');
+                temp *= 2;
+            }
+
+            else if (in.charAt(i) == '[') {
+                stack.push('[');
+                temp *= 3;
+            }
+
+            else if (in.charAt(i) == ')') {
+                if (stack.isEmpty() || stack.peek() != '(') {
+                    System.out.println(0);
+                    System.exit(0);
                 }
                 else {
-                    stack.push(temp);
+                    if (in.charAt(i - 1) == '(') {
+                        answer += temp;
+                    }
+                    stack.pop();
+                    temp /= 2;
                 }
             }
-            else {
-                answer += tempAnswer;
-                tempAnswer = 0;
+
+            else if (in.charAt(i) == ']') {
+                if (stack.isEmpty() || stack.peek() != '[') {
+                    System.out.println(0);
+                    System.exit(0);
+                }
+                else {
+                    if (in.charAt(i - 1) == '[') {
+                        answer += temp;
+                    }
+                    stack.pop();
+                    temp /= 3;
+                }
             }
         }
-
-        if (!stack.isEmpty()) {
-            System.out.println(0);
-            System.exit(0);
-        }
-        System.out.println(answer);
+        System.out.println(!stack.isEmpty() ? 0 : answer);
     }
 }
