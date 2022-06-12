@@ -15,10 +15,12 @@ public class Main {
 
         boolean[] brokenButtons = initButtons();
 
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        for (int i = 0; i < numberOfBrokenButton; i++) {
-            int tempButton = Integer.parseInt(st.nextToken());
-            brokenButtons[tempButton] = true;
+        if (numberOfBrokenButton > 0) {
+            StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+            for (int i = 0; i < numberOfBrokenButton; i++) {
+                int tempButton = Integer.parseInt(st.nextToken());
+                brokenButtons[tempButton] = true;
+            }
         }
 
         // +/-로만 이동했을 때
@@ -26,16 +28,17 @@ public class Main {
 
         // 모든 경우의 수를 시도해야 한다. / brute force
         for (int temp = 0; temp < MAX; temp++) {
-            int lengthOfTemp = calcLength(temp, brokenButtons);
-            if (lengthOfTemp > 0) {
+            int tempData = calcData(temp, brokenButtons);
+            if (tempData > 0) {
                 int press = Math.abs(temp - N);
-                answer = Math.min(answer, lengthOfTemp + press);
+                int tempAnswer = tempData + press;
+                answer = Math.min(answer, tempAnswer);
             }
         }
         System.out.println(answer);
     }
 
-    static int calcLength(int temp, boolean[] brokenButtons) {
+    static int calcData(int temp, boolean[] brokenButtons) {
         if (temp == 0) {
             if (brokenButtons[0]) {
                 return 0;
