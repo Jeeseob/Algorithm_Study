@@ -15,7 +15,6 @@ public class Main {
         for (int i = 0; i < N; i++) {
             drinks[i] = Integer.parseInt(br.readLine());
         }
-
         // 초기값 세팅( N이 1,2 일 때 ArrayIndex오류 발생)
         dp[0] = drinks[0];
 
