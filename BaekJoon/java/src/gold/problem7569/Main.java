@@ -18,6 +18,7 @@ public class Main {
     private static int[] yPlus = new int[]{ 0, 0, -1, 1, 0, 0 };
     private static int[] xPlus = new int[]{ -1, 1, 0, 0, 0, 0 };
 
+    private static int N, M, H;
     private static Queue<Point> queue = new LinkedList<>();
     private static int unTomato;
     public static void main(String[] args) throws IOException {
@@ -58,7 +59,7 @@ public class Main {
                     int nextY = tempY + yPlus[j];
                     int nextZ = tempZ + zPlus[j];
 
-                    if (0 <= nextX && nextX < M && 0 <= nextY && nextY < N && 0 <= nextZ && nextZ < H) {
+                    if (inRange(nextX, nextY, nextZ)) {
                         if (box[nextZ][nextY][nextX] == 0) {
                             unTomato--;
                             box[nextZ][nextY][nextX] = 1;
@@ -70,6 +71,10 @@ public class Main {
             result++;
         }
         System.out.println(unTomato == 0 ? result : -1);
+    }
+
+    public static boolean inRange(int nextX, int nextY, int nextZ) {
+        return 0 <= nextX && nextX < M && 0 <= nextY && nextY < N && 0 <= nextZ && nextZ < H;
     }
 
 }
