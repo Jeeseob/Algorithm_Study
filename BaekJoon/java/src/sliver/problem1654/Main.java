@@ -28,7 +28,7 @@ public class Main {
 
         Arrays.sort(lines);
         long min = 1;
-        long max = Arrays.stream(lines).sum();
+        long max = lines[lines.length-1];
 
         while (min <= max) {
             long mid = (max + min) / 2;
