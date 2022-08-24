@@ -38,7 +38,6 @@ public class Main {
         }
     }
 
-    // 그룹 개수 맞추기(0 개수 그룹 없애기)
     public static void groupCheck(){
         int idx = 0;
         for(int i = 0; i < M; i++){
