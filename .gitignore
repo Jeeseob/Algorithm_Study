@@ -1,4 +1,6 @@
 
 .DS_Store
 BeakJoon/java/out/
+*.out
+*.dSYM
 
