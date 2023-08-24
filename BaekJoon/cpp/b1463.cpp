@@ -12,14 +12,14 @@ using namespace std;
 int main(void) {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    
-    int board[MAX];
-    memset(board, MAX, sizeof(board));
 
     int X;
     cin >> X;
 
+    int board[MAX];
+    memset(board, MAX, sizeof(board));
     board[1] = 0;
+
     for(int i = 1; i < X; i++) {
         board[i+1] = min(board[i+1], board[i] + 1);
         if(i*2 > MAX) {continue;}
