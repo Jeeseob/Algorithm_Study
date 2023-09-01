@@ -15,9 +15,9 @@ int main(void) {
     cin >> X; 
     
     int dp[MAX];
-    for(int i = 1; i <= X; ++i){
+    for(int i = 1; i <= X; i++){
         dp[i] = i;
-        for(int j = 1; j * j <= i; ++j){
+        for(int j = 1; j * j <= i; j++){
             dp[i] = min(dp[i], dp[i - j * j] + 1);
         }
     }
