@@ -1,3 +1,6 @@
+/**
+ * https://www.acmicpc.net/problem/11055 
+ */
 #include<iostream>
 #include<algorithm>
 
@@ -29,11 +32,7 @@ int main(void) {
     }
 
     int answer = *max_element(dpArray, dpArray + n);
-    // cout << answer;
-
-    for(int i = 0; i < n; i++) {
-        cout << dpArray[i] << " ";
-    } 
+    cout << answer;
 
     return 0;
 }
