@@ -24,9 +24,9 @@ int main(void) {
     }
     cin >> x;
 
-    sort(array, array + sizeof(array));
+    sort(array, array + n);
     int first = 0;
-    int second = sizeof(array) - 1;
+    int second = n - 1;
 
     while(first < second) {
         int sum = array[first] + array[second];
